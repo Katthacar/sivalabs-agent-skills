@@ -6,6 +6,7 @@ description: >
     * When developing Spring Boot applications using Spring MVC, Spring Data JPA, Spring Modulith, Spring Security
     * To create recommended Spring Boot package structure
     * To implement REST APIs, entities/repositories, service layer, modular monoliths
+    * To place utility classes, exception classes, and GlobalExceptionHandler correctly
     * To use Thymeleaf view templates for building web applications
     * To write tests for REST APIs and Web applications
     * To write ArchUnit tests for testing architecture
@@ -33,6 +34,10 @@ Implement the repository and entity layer using [references/spring-data-jpa.md](
 ## Service layer
 
 Implement business logic in the service layer using [references/spring-service-layer.md](references/spring-service-layer.md).
+
+## Exception Handling and Utility Classes
+
+For guidance on where to create utility classes, exception classes, and `GlobalExceptionHandler` in a Spring Boot project (including hexagonal/modular architecture), read [references/exception-handling.md](references/exception-handling.md).
 
 ## Spring MVC REST APIs
 

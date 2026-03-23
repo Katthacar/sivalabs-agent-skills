@@ -8,12 +8,17 @@ Use a **domain-driven, modular layout**: organize packages by **business modules
 dev.sivalabs.projectname/
 ├── Application                      # Main Spring Boot entrypoint class
 ├── shared/                          # Cross-cutting concerns
-│   ├── package-info.java
+│   ├── exceptions/
+│   │   ├── DomainException.java          # Base class for all domain/business exceptions
+│   │   └── ResourceNotFoundException.java
+│   ├── utils/                       # Shared utility/helper classes
+│   └── package-info.java
 ├── users/                           # Users module (bounded context)
 │   ├── config/                      # Users module-specific config
 │   ├── domain/                      # Domain logic
 │   │   ├── models/                  # Domain models
 │   │   │   ├── package-info.java
+│   │   ├── InvalidUserCreationException.java  # Module-specific domain exception
 │   │   ├── {entities, repositories, mappers, services}
 │   ├── rest/                        # REST API layer
 │   │   ├── controllers/             # REST controllers
@@ -33,7 +38,10 @@ Explanation of the above package structure:
 
 - **Application.java**: The main Spring Boot entry point class annotated with `@SpringBootApplication`. Contains the `main()` method that bootstraps the application.
 
-- **shared/**: Contains cross-cutting concerns and utilities shared across multiple modules (e.g., common utilities, shared DTOs, base classes, custom annotations).
+- **shared/**: Contains cross-cutting concerns and utilities shared across multiple modules:
+  - **exceptions/**: Base exception classes (`DomainException`, `ResourceNotFoundException`) used across all modules.
+  - **utils/**: Common utility/helper classes (e.g., `StringUtils`) shared across modules.
+  - Other shared types: shared DTOs, base classes, custom annotations.
 
 - **{module}/** (e.g., users/, catalog/, orders/): Each business module represents a bounded context and contains:
 
@@ -56,6 +64,8 @@ Explanation of the above package structure:
   - **WebMvcConfig.java**: MVC configuration (CORS, interceptors, formatters).
   - **SecurityConfig.java**: Spring Security configuration for authentication and authorization.
   - **GlobalExceptionHandler.java**: Centralized exception handling using `@RestControllerAdvice` for consistent error responses.
+
+For detailed guidance on placing exception classes, utility classes, and `GlobalExceptionHandler`, see [exception-handling.md](exception-handling.md).
 
 
 ### Naming Conventions
